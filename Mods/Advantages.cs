@@ -366,7 +366,47 @@ namespace iiMenu.Mods
                 }
             }
         }
+public static void UltraInstinct() /* my first time making a mod, really crap code, also doing it on a school chromebook so can't even run it to test if it works*/
+        {
+            foreach (VRRig vrrig in GorillaParent.instance.vrrigs)
+            {
+                Vector3 they = vrrig.headMesh.transform.position;
+                Vector3 notthem = GorillaTagger.Instance.offlineVRRig.head.rigTarget.position;
+                float distance = Vector3.Distance(they, notthem);
 
+                if (!PlayerIsTagged(GorillaTagger.Instance.offlineVRRig) && PlayerIsTagged(vrrig) && GorillaLocomotion.Player.Instance.disableMovement == false && distance < tagAuraDistance)
+                {
+                     bool hit = rightSecondary || Mouse.current.rightButton.isPressed;
+            if (GetIndex("Non-Togglable Invisible").enabled)
+            {
+                invisMonke = hit;
+            }
+            if (invisMonke)
+            {
+                GorillaTagger.Instance.offlineVRRig.enabled = false;
+                GorillaTagger.Instance.offlineVRRig.transform.position = new Vector3(99999f, 99999f, 99999f);
+                try
+                {
+                    GorillaTagger.Instance.myVRRig.transform.position = new Vector3(99999f, 99999f, 99999f);
+                }
+                catch { }
+            }
+            if (hit == true && lastHit2 == false)
+            {
+                invisMonke = !invisMonke;
+                if (invisMonke)
+                {
+                    wasDisabledAlready = GorillaTagger.Instance.offlineVRRig.enabled;
+                }
+                else
+                {
+                    GorillaTagger.Instance.offlineVRRig.enabled = wasDisabledAlready;
+                }
+            }
+            lastHit2 = hit; }
+                }
+            }
+        }
         public static void TagReach()
         {
             if (PlayerIsTagged(GorillaTagger.Instance.offlineVRRig))
